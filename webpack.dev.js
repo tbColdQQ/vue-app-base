@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
  * @Descripttion: 
  * @version: 
@@ -8,6 +9,16 @@
  */ 
 let config = require('./webpack.common')
 config = Object.assign({}, config, {
-    mode: 'development'
+    mode: 'development',
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: 'eslint-loader',
+                enforce: 'pre'
+            }
+        ]
+    }
 })
 module.exports = config

@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
  * @Descripttion: 
  * @version: 
@@ -27,7 +28,7 @@ module.exports = {
         // 输出的文件目录（绝对地址）
         path: path.resolve(__dirname, 'dist'),
         // 网站根目录
-        publicPath: '/'
+        publicPath: ''
     },
     // devtools: '',
     module: {
@@ -53,14 +54,10 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 5 * 1024,
+                            esModule: false,    // file-loader 的配置
+                            limit: 8 * 1024,
                             name: '[name].[ext]',
-                            callback: {
-                                loader: 'file-loader',
-                                options: {
-                                    publicPath: 'assets/'
-                                }
-                            }
+                            outputPath: 'assets/'   // file-loader 的配置
                         }
                     }
                 ]
@@ -74,11 +71,11 @@ module.exports = {
             },
             {
                 test: /.vue$/,
-                use: 'vue-loader'
-            },
-            {
-                test: /.html%/,
-                use: 'html-loader'
+                use: 'vue-loader',
+                exclude: file => (
+                    /node_modules/.test(file) &&
+                    !/\.vue\.js/.test(file)
+                )
             }
         ]
     },
