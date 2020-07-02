@@ -5,7 +5,7 @@
  * @Author: jie.niu
  * @Date: 2020-07-01 10:20:33
  * @LastEditors: jie.niu
- * @LastEditTime: 2020-07-01 17:35:50
+ * @LastEditTime: 2020-07-02 11:51:40
  */
 const path = require('path')
 const { dirname } = require('path')
@@ -66,7 +66,7 @@ module.exports = {
                 test: '/.js$/',
                 loader: 'babel-loader',
                 options: {
-                    presets: ['env']
+                    presets: ['@babel/preset-env']
                 }
             },
             {
